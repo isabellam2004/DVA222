@@ -31,10 +31,7 @@
             stack.Pop();
             stack.Pop();
             stack.Pop();
-
-            Console.WriteLine(stack.StackIsEmpty());
-
-            stack.Push(1);
+            stack.Pop();
         }
     }
 
@@ -73,13 +70,13 @@
         // Hidden method to check if the capacity of the array needs to be rezised:
         void CheckSize()
         {
-            if (size == capacity)
+            if (size == capacity)   // If the size = the capacity, the capacity is dubbled
             {
                 capacity *= 2;
                 Array.Resize(ref stack, capacity);
                 return;
             }
-            if (capacity / 2 != 0 && size == capacity / 2)
+            if (capacity / 2 != 0 && size == capacity / 2)  // If the size = half the capacity, the capacity is halfed. Except if capacity/2 = 0, then nothing happens
             {
                 capacity /= 2;
                 Array.Resize(ref stack, capacity);
@@ -106,6 +103,9 @@
         // Public method for popping the last element out of the stack:
         public void Pop()
         {
+            if (size == 0)
+                throw new Exception("The stack is empty");
+
             stack[index] = 0;   // Sets the popped element to 0
             index--;
             size--;
