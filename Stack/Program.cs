@@ -56,9 +56,9 @@
     class Stack64U
     {
         // Variables in the class:
-        static int index;
-        static int size;
-        static int length;
+        int index;
+        int size;
+        int length;
         ulong[] stack;
 
         // Initializes the variables:
