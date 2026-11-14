@@ -20,7 +20,7 @@
             stack.Push(8);
             stack.Push(9);
 
-            ulong? peekedElement = stack.Peek();
+            ulong? peekedElement = stack.Peek();    // Testing Peek
 
             if (peekedElement == null)
                 Console.WriteLine("Stack is empty");
@@ -40,7 +40,7 @@
             stack.Pop();
             stack.Pop();
 
-            peekedElement = stack.Peek();
+            peekedElement = stack.Peek(); // Testing peek when stack is empty
 
             if (peekedElement == null)
                 Console.WriteLine("Stack is empty");
@@ -132,6 +132,7 @@
             Console.WriteLine("");
         }
 
+        // Public method for peeking the element at the top of the stack
         public ulong? Peek()
         {
             if(StackIsEmpty())
