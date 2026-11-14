@@ -48,6 +48,7 @@
                 Console.WriteLine("\nPeeked element: {0}\n", peekedElement);
 
             stack.Push(1);
+            stack.Pop();
         }
     }
 
@@ -69,9 +70,9 @@
     class Stack64U
     {
         // Variables in the class:
-        static int index;
-        static int size;
-        static int length;
+        int index;
+        int size;
+        int capacity;
         ulong[] stack;
 
         // Initializes the variables:
@@ -79,23 +80,23 @@
         {
             index = -1;
             size = 0;
-            length = 1;
-            stack = new ulong[length];
+            capacity = 1;
+            stack = new ulong[capacity];
         }
 
-        // Hidden method to check if the length of the array needs to be rezised:
+        // Hidden method to check if the capacity of the array needs to be rezised:
         void CheckSize()
         {
-            if (size == length)
+            if (size == capacity)   // If the size = the capacity, the capacity is dubbled
             {
-                length *= 2;
-                Array.Resize(ref stack, length);
+                capacity *= 2;
+                Array.Resize(ref stack, capacity);
                 return;
             }
-            if (length / 2 != 0 && size == length / 2)
+            if (capacity / 2 != 0 && size == capacity / 2)  // If the size = half the capacity, the capacity is halfed. Except if capacity/2 = 0, then nothing happens
             {
-                length /= 2;
-                Array.Resize(ref stack, length);
+                capacity /= 2;
+                Array.Resize(ref stack, capacity);
                 return;
             }
         }
@@ -109,7 +110,7 @@
             CheckSize();    // Checks need of resizing
 
             // Controll loop:
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < capacity; i++)
             {
                 Console.WriteLine(stack[i]);
             }
@@ -119,13 +120,16 @@
         // Public method for popping the last element out of the stack:
         public void Pop()
         {
+            if (size == 0)
+                throw new Exception("The stack is empty");
+
             stack[index] = 0;   // Sets the popped element to 0
             index--;
             size--;
             CheckSize();
 
             // Controll loop:
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < capacity; i++)
             {
                 Console.WriteLine(stack[i]);
             }
