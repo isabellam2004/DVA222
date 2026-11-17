@@ -101,31 +101,19 @@
             size = 0;
             capacity = 1;
             stack = new ulong[capacity];
-            minStack = new ulong[capacity];     // Seperate stack that keeps track of smallest value
-        }
-
-        // Hidden method to check if the capacity of the array needs to be rezised:
-        void CheckSize()
-        {
-            if (size == capacity)   // If the size = the capacity, the capacity is dubbled
-            {
-                capacity *= 2;
-                Array.Resize(ref stack, capacity);
-                Array.Resize(ref minStack, capacity);
-                return;
-            }
-            if (capacity / 2 != 0 && size == capacity / 2)  // If the size = half the capacity, the capacity is halfed. Except if capacity/2 = 0, then nothing happens
-            {
-                capacity /= 2;
-                Array.Resize(ref stack, capacity);
-                Array.Resize(ref minStack, capacity);
-                return;
-            }
+            minStack = new ulong[capacity];     // Array that keeps track of smallest value
         }
 
         // Public method for pushing elements to the stack:
         public void Push(ulong element)
         {
+            if (size == capacity)   // If the size = the capacity, the cap  acity is dubbled
+            {
+                capacity *= 2;
+                Array.Resize(ref stack, capacity);
+                Array.Resize(ref minStack, capacity);
+            }
+
             index++;    // Increases the index by 1
             stack[index] = element;     // Adds the element at the index
             if (size == 0)              // Sets the initial element as the smallest, or other things if it's not the initial element
@@ -135,7 +123,7 @@
             else
                 minStack[index] = minStack[index - 1]; 
             size++;     // Increases the size by 1
-            CheckSize();    // Checks need of resizing
+            
 
             // Controll loop:
             for (int i = 0; i < capacity; i++)
@@ -155,7 +143,13 @@
             minStack[index] = 0; // Sets the popped element to 0 in the minStack
             index--;
             size--;
-            CheckSize();
+      
+            if (capacity / 2 != 0 && size == capacity / 2)  // If the size = half the capacity, the capacity is halfed. Except if capacity/2 = 0, then nothing happens
+            {
+                capacity /= 2;
+                Array.Resize(ref stack, capacity);
+                Array.Resize(ref minStack, capacity);
+            }
 
             // Controll loop:
             for (int i = 0; i < capacity; i++)
