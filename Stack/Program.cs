@@ -1,11 +1,10 @@
 ﻿namespace Stack
 {
-    internal class Program
+    class Client
     {
         static void Main(string[] args)
         {
-            //Stack64U stack = new Stack64U();
-            StackList stack = new StackList();
+            Stack64U stack = new Stack64U();
 
             Console.WriteLine("Pushing 1,2,3,4,5,6 to stack");
             stack.Push(1);
