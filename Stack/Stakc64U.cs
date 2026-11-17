@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Stack
+﻿namespace Stack
 {
     class Stack64U
     {
