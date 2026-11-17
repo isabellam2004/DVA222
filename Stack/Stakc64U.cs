@@ -38,14 +38,6 @@
             else
                 minStack[index] = minStack[index - 1];
             size++;     // Increases the size by 1
-
-
-            // Controll loop:
-            for (int i = 0; i < capacity; i++)
-            {
-                Console.WriteLine(stack[i]);
-            }
-            Console.WriteLine("");
         }
 
         // Public method for popping the last element out of the stack:
@@ -65,13 +57,6 @@
                 Array.Resize(ref stack, capacity);
                 Array.Resize(ref minStack, capacity);
             }
-
-            // Controll loop:
-            for (int i = 0; i < capacity; i++)
-            {
-                Console.WriteLine(stack[i]);
-            }
-            Console.WriteLine("");
         }
 
         // Public method for peeking the element at the top of the stack
