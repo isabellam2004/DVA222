@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Stack64U stack = new Stack64U();
+            //Stack64U stack = new Stack64U();
+            StackList stack = new StackList();
 
             stack.Push(1);
             stack.Push(2);
