@@ -70,21 +70,6 @@
         }
     }
 
-    class testPrint
-    {
-        string st;
-
-        public testPrint(string s)
-        {
-            st = s;
-        }
-
-        public void print()
-        {
-            Console.WriteLine(st);
-        }
-    }
-
     class Stack64U
     {
         // Variables in the class:
