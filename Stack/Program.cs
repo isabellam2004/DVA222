@@ -39,16 +39,28 @@
             Console.WriteLine("Elements in stack: {0}", stack.GetSize());
 
             Console.WriteLine("Popping all elements in stack");
+            
             popped_element = stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
-            stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element); 
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
+            
             Console.WriteLine("Elements in stack: {0}", stack.GetSize());
 
             peekedElement = stack.Peek(); // Testing peek when stack is empty
@@ -69,19 +81,25 @@
 
             Console.WriteLine("\nSmallest element: {0}\n", stack.GetMinValue());    // 2
             Console.WriteLine("Popping 2");
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
 
-            stack.Pop();
+
             Console.WriteLine("\nSmallest element: {0}\n", stack.GetMinValue()); // 3
             Console.WriteLine("Popping 7");
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
 
-            stack.Pop();
+
             Console.WriteLine("\nSmallest element: {0}\n", stack.GetMinValue()); // 3
             Console.WriteLine("Popping 3");
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
 
-            stack.Pop();
             Console.WriteLine("\nSmallest element: {0}\n", stack.GetMinValue());    // 5
             Console.WriteLine("Popping 5");
-            stack.Pop();
+            popped_element = stack.Pop();
+            Console.WriteLine("Popped Element: {0}", popped_element);
         }
     }
 }
