@@ -5,6 +5,7 @@
         static void Main(string[] args)
         {
             Stack64U stack = new Stack64U();
+            ulong popped_element;
 
             Console.WriteLine("Pushing 1,2,3,4,5,6 to stack");
             stack.Push(1);
@@ -38,7 +39,7 @@
             Console.WriteLine("Elements in stack: {0}", stack.GetSize());
 
             Console.WriteLine("Popping all elements in stack");
-            stack.Pop();
+            popped_element = stack.Pop();
             stack.Pop();
             stack.Pop();
             stack.Pop();

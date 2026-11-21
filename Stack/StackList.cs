@@ -22,14 +22,24 @@
             minHistory.Add(minValue);   // The current minValue is added to the history list
         }
 
-        public void Pop()
+        public ulong Pop()
         {
+            if (stack.Count == 0)
+                throw new Exception("Stack is empty");
+
+            ulong popped_value = stack[stack.Count - 1];
+            
             stack.RemoveAt(stack.Count - 1);    // Removes the last element of the list
             minHistory.RemoveAt(minHistory.Count - 1);      // Removes the most recent reccorded min value
             if (minHistory.Count == 0)  // If the history list is empty the minValue resets to its initially value
                 minValue = ulong.MaxValue;
             else
                 minValue = minHistory[minHistory.Count - 1];    // Else the minValue is set to the now most recent reccorded min value
+
+            if (popped_value == 0)
+                throw new Exception("Stack is empty");
+            else
+                return popped_value;
         }
 
         public ulong? Peek()
