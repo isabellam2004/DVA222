@@ -41,10 +41,12 @@
         }
 
         // Public method for popping the last element out of the stack:
-        public void Pop()
+        public ulong Pop()
         {
             if (size == 0)
                 throw new Exception("The stack is empty");
+
+            ulong popped_value = stack[index];
 
             stack[index] = 0;   // Sets the popped element to 0
             minStack[index] = 0; // Sets the popped element to 0 in the minStack
@@ -57,6 +59,8 @@
                 Array.Resize(ref stack, capacity);
                 Array.Resize(ref minStack, capacity);
             }
+
+            return popped_value;
         }
 
         // Public method for peeking the element at the top of the stack
