@@ -1,0 +1,31 @@
+﻿namespace RPG_system
+{
+    class Category
+    {
+        double initXP;
+
+        protected Category(double initXP)
+        {
+            this.initXP = initXP;
+        }
+
+        public virtual double AttackFormula(int s, int a, int i) => throw new NotImplementedException();
+
+        public virtual double DefenceFormula(int s, int a, int i) => throw new NotImplementedException();
+    }
+
+    class Warrior : Category
+    {
+        public Warrior() : base(3.70) { }
+
+        public override double AttackFormula(int s, int a, int i)
+        {
+            return 0.6 * s + 0.3 * a + 0.1 * i;
+        }
+
+        public override double DefenceFormula(int s, int a, int i)
+        {
+            return 0.3 * s + 0.3 * a + 0.2 * i;
+        }
+    }
+}
