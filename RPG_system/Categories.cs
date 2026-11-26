@@ -106,4 +106,27 @@
             return defMSG;
         }
     }
+    class Wretch : Category
+    {
+        string atkMSG = "whimpers while throwing a weak punch";
+        string defMSG = "slips and fall, accidentally dodging";
+        
+        public Wretch() : base(1.50) { }
+        public override double AttackFormula(int s, int a, int i)
+        {
+            return 0.2 * s + 0.2 * a + 0.2 * i;     // Might need som balancing
+        }
+        public override double DefenceFormula(int s, int a, int i)
+        {
+            return 0.2 * s + 0.2 * a + 0.2 * i;
+        }
+        public override string GetAtkMessage() 
+        {
+            return atkMSG;
+        }
+        public override String GetDefMessage()
+        {
+            return defMSG;
+        }
+    }
 }
