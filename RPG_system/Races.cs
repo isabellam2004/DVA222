@@ -1,16 +1,16 @@
-﻿using System.Data;
-
-namespace RPG_system
+﻿namespace RPG_system
 {
     class Race
     {
+        string race;
         int strength;
         int agility;
         int intelligence;
         int maxHP;
 
-        protected Race(int strength, int agility, int intelligence, int maxHP)
+        protected Race(int strength, int agility, int intelligence, int maxHP, string race)
         {
+            this.race = race;
             this.strength = strength;
             this.agility = agility;
             this.intelligence = intelligence;
@@ -27,14 +27,22 @@ namespace RPG_system
             return maxHP;
         }
 
+        public virtual string GetRace()
+        {
+            return race;
+        }
+
         public virtual string getVictoryMessage() => throw new NotImplementedException();
     }
 
     class Fairy : Race
     {
-        string[] victoryMSGs = ["The fairy swirls around in the sky!", "The fairy jumps around and giggles and clapps its hands!"];
+        string[] victoryMSGs;
 
-        public Fairy() : base(2, 5, 9, 20) { }
+        public Fairy() : base(2, 5, 9, 20, "Fairy")
+        {
+            victoryMSGs = ["The fairy swirls around in the sky!", "The fairy jumps around and giggles and clapps its hands!"];
+        }
 
         public override string getVictoryMessage()
         {
@@ -48,9 +56,12 @@ namespace RPG_system
 
     class Orc : Race
     {
-        string[] victoryMSGs = ["The orc flexes its muscles and lets out a powerful roar!", "The orc roars in victory!"];
+        string[] victoryMSGs;
 
-        public Orc() : base(10, 3, 2, 40) { }
+        public Orc() : base(10, 3, 2, 40, "Orc")
+        {
+            victoryMSGs = ["The orc flexes its muscles and lets out a powerful roar!", "The orc roars in victory!"];
+        }
 
         public override string getVictoryMessage()
         {
@@ -64,9 +75,12 @@ namespace RPG_system
 
     class Elf : Race
     {
-        string[] victoryMSGs = ["The elf flexes its bow, letting out a victory sound!", "The elf stands tall and lifts its bow above its head!"];
+        string[] victoryMSGs;
  
-        public Elf() : base(4, 7, 6, 30) { }
+        public Elf() : base(4, 7, 6, 30, "Elf")
+        {
+            victoryMSGs = ["The elf flexes its bow, letting out a victory sound!", "The elf stands tall and lifts its bow above its head!"];
+        }
 
         public override string getVictoryMessage()
         {
@@ -79,9 +93,13 @@ namespace RPG_system
     }
     class Human : Race
     {
-        string[] victoryMSGs = ["The human celebrates his victory with some cake.", "The human cannot take credit for his victory because of cultural norms."];
+        string[] victoryMSGs;
 
-        public Human() : base(6, 5, 5, 35) { }
+        public Human() : base(6, 5, 5, 35, "Human")
+        {
+            victoryMSGs = ["The human celebrates his victory with some cake.", "The human cannot take credit for his victory because of cultural norms."];
+        }
+
         public override string getVictoryMessage()
         {
             Random rnd = new Random();

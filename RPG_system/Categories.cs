@@ -2,11 +2,19 @@
 {
     class Category
     {
+        string category;
         double initXP;
 
-        protected Category(double initXP)
+        protected Category(double initXP, string category)
         {
             this.initXP = initXP;
+            this.category = category;
+        }
+
+
+        public string GetCategory()
+        {
+            return category;
         }
 
         public double GetInitXP()
@@ -28,7 +36,7 @@
         string atkMSG = "swings a mighty sword!";
         string defMSG = "blocks with a shield!";
 
-        public Warrior() : base(3.70) { }
+        public Warrior() : base(3.70, "Warrior") { }
 
         public override double AttackFormula(int s, int a, int i)
         {
@@ -56,7 +64,7 @@
         string atkMSG = "casts a firebal!";
         string defMSG = "creates a magical barrier!";
 
-        public Mage() : base(2.75) { }
+        public Mage() : base(2.75, "Mage") { }
 
         public override double AttackFormula(int s, int a, int i)
         {
@@ -84,7 +92,7 @@
         string atkMSG = "shoots an arrow!";
         string defMSG = "dodges swiftly!";
 
-        public Archer() : base(3.15) { }
+        public Archer() : base(3.15, "Archer") { }
 
         public override double AttackFormula(int s, int a, int i)
         {
@@ -111,7 +119,7 @@
         string atkMSG = "whimpers while throwing a weak punch";
         string defMSG = "slips and fall, accidentally dodging";
         
-        public Wretch() : base(1.50) { }
+        public Wretch() : base(1.50, "Wretch") { }
         public override double AttackFormula(int s, int a, int i)
         {
             return 0.2 * s + 0.2 * a + 0.2 * i;     // Might need som balancing
