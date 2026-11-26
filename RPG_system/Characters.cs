@@ -21,27 +21,17 @@
             XP = maxXP;
         }
 
+        public string GetRace() => race.GetRace();
+        public string GetCategory() => category.GetCategory();
         public int GetAttribute(int attribute) => race.GetAttributes()[attribute];
         public int GetMaxHP() => race.GetMaxHP();
         public double GetInitXP() => category.GetInitXP();
-
-        public double OnAttack()   // could prob simplify
-        {
-            double attack = category.AttackFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
-
-            return attack*Random.Shared.NextDouble()*(xp - 0);
-        }
-
-        public double OnDefense()
-        {
-            double defense = category.DefenceFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
-
-            return defense * Random.Shared.NextDouble() * (xp - 0);
-        }
+        public double OnAttack() => Random.Shared.NextDouble() * XP * category.AttackFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
+        public double OnDefence() => Random.Shared.NextDouble() * XP * category.DefenceFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
 
         public string ToString()
         {
-            return $"Name: {name}, XP: {XP}, Health: {HP}";
+            return $"Name: {name}, Race: {GetRace()}, Type: {GetCategory()} XP: {XP}, Health: {HP}";
         }
         public int HP
         {
