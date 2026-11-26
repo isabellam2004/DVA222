@@ -77,4 +77,18 @@ namespace RPG_system
             return victoryMSGs[msgIndex];
         }
     }
+    class Human : Race
+    {
+        string[] victoryMSGs = ["The human celebrates his victory with some cake.", "The human cannot take credit for his victory because of cultural norms."];
+
+        public Human() : base(6, 5, 5, 35) { }
+        public override string getVictoryMessage()
+        {
+            Random rnd = new Random();
+
+            int msgIndex = rnd.Next(victoryMSGs.Length);
+
+            return victoryMSGs[msgIndex];
+        }
+    }
 }
