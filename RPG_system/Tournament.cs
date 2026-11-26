@@ -2,12 +2,14 @@
 {
     class Tournament
     {
-        int rounds;
+        int rounds = 5;
+        double restorationHP = 0.5;     // Does "Must not be hardcoded" mean it's optional or that it doesnt have to be hardcoded?
+        double victoryXP = 0.5;
+        double drawXP = 0.25;
         List<Character> participants;
 
-        public Tournament(int rounds, List<Character> participants)     // Send amount of rounds each fight will be and the participants
+        public Tournament(List<Character> participants)     // Send amount of rounds each fight will be and the participants
         {
-            this.rounds = rounds;
             this.participants = participants;
         }
         public void startTournament()
@@ -70,8 +72,8 @@
                     participants.Remove(defender);
 
                     Console.WriteLine("\n{0}", attacker.victoryMessage());
-                    attacker.XP += 0.5;
-                    attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * 0.5);     // HP-restoration by 50% for the winner
+                    attacker.XP += victoryXP;
+                    attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * restorationHP);     // HP-restoration by 50% for the winner
                     return;
                 }
                 else
@@ -82,10 +84,10 @@
             }
             
             Console.WriteLine("\nThe fight between {0} and {1} resulted in a draw.", attacker.GetName(), defender.GetName());
-            attacker.XP += 0.25;    // Smaller XP increase for both characters
-            defender.XP += 0.25;
-            attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * 0.5);   // HP restoration for both characters by 50%
-            defender.HP += (int)Math.Round((defenderInitHP - defender.HP) * 0.5);
+            attacker.XP += drawXP;    // Smaller XP increase for both characters
+            defender.XP += drawXP;
+            attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * restorationHP);   // HP restoration for both characters by 50%
+            defender.HP += (int)Math.Round((defenderInitHP - defender.HP) * restorationHP);
             // Stat print for both after the draw:
             Console.WriteLine(attacker.ToString());
             Console.WriteLine(defender.ToString());
