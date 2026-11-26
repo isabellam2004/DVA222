@@ -2,13 +2,14 @@
 {
     class Race
     {
+        // The variables that a race have:
         string race;
         int strength;
         int agility;
         int intelligence;
         int maxHP;
 
-        protected Race(int strength, int agility, int intelligence, int maxHP, string race)
+        protected Race(int strength, int agility, int intelligence, int maxHP, string race) // Constructor which takes the individual attributes, the max HP and the race
         {
             this.race = race;
             this.strength = strength;
@@ -17,21 +18,25 @@
             this.maxHP = maxHP;
         }
 
+        // Returns a list with the race specific attributes
         public int[] GetAttributes()
         {
             return [strength, agility, intelligence];
         }
 
+        // Returns the race specific max HP
         public int GetMaxHP()
         {
             return maxHP;
         }
 
+        // Returns the race
         public virtual string GetRace()
         {
             return race;
         }
 
+        // A method which all races should contain, which returns a randomized race specific victory message:
         public virtual string getVictoryMessage() => throw new NotImplementedException();
     }
 
@@ -48,9 +53,9 @@
         {
             Random rnd = new Random();
 
-            int msgIndex = rnd.Next(victoryMSGs.Length);
+            int msgIndex = rnd.Next(victoryMSGs.Length);    // Randomize an index between 0 and the victoryMSGs arrays length
 
-            return victoryMSGs[msgIndex];
+            return victoryMSGs[msgIndex];   // Returns the randomized message
         }
     }
 
