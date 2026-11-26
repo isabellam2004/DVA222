@@ -2,6 +2,7 @@
 {
     class Character
     {
+        // The variables that a character have:
         string name;
         Category category;
         Race race;
@@ -10,7 +11,7 @@
         int maxHP;
         double maxXP;
 
-        public Character(string name, Race race, Category category)
+        public Character(string name, Race race, Category category)     // Constructor which takes the name, the race and the category of the character
         {
             this.name = name;
             this.category = category;
@@ -21,6 +22,7 @@
             XP = maxXP;
         }
 
+        // Defines the character methods with composition of the methods from Race and Category:
         public string GetRace() => race.GetRace();
         public string GetCategory() => category.GetCategory();
         public int GetAttribute(int attribute) => race.GetAttributes()[attribute];
@@ -29,10 +31,12 @@
         public double OnAttack() => Random.Shared.NextDouble() * XP * category.AttackFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
         public double OnDefence() => Random.Shared.NextDouble() * XP * category.DefenceFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
 
+        // Returns a string with character info
         public string ToString()
         {
             return $"Name: {name}, Race: {GetRace()}, Type: {GetCategory()} XP: {XP}, Health: {HP}";
         }
+
         public int HP
         {
             get 
@@ -44,6 +48,7 @@
                 hp = Math.Clamp(value, 0, maxHP);
             }
         }
+
         public double XP
         {
             get
