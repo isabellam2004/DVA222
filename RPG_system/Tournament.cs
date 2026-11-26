@@ -71,7 +71,7 @@
 
                     Console.WriteLine("\n{0}", attacker.victoryMessage());
                     attacker.XP += 0.5;
-                    attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP)*0.5);     // HP-restoration by 50% for the winner
+                    attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * 0.5);     // HP-restoration by 50% for the winner
                     return;
                 }
                 else
@@ -86,8 +86,10 @@
             defender.XP += 0.25;
             attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * 0.5);   // HP restoration for both characters by 50%
             defender.HP += (int)Math.Round((defenderInitHP - defender.HP) * 0.5);
+            // Stat print for both after the draw:
+            Console.WriteLine(attacker.ToString());
+            Console.WriteLine(defender.ToString());
             return;
         }
-
     }
 }
