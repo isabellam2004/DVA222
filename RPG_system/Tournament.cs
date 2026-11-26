@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RPG_system
+﻿namespace RPG_system
 {
     class Tournament
     {
@@ -18,12 +12,23 @@ namespace RPG_system
         }
         public void startTournament()
         {
-            while(participants.Count() > 1) 
-            { 
-                // Select two alive characters, let them fight until only one remains alive, repeats until only one alive character left
-                // Print out victor before returning?
+            Random rnd = new Random();
+            int idx1;
+            int idx2;
+
+            while(participants.Count() > 1)     // Tournament loop. Loops as long as there is more than one left in the participants list
+            {
+                idx1 = rnd.Next(participants.Count());  // Randomizes the index for the first fighter
+                do
+                {
+                    idx2 = rnd.Next(participants.Count());  // Randomizes the index for the second fighter
+                } while(idx1 == idx2);  // Only continues if the indices aren't the same
+
+                Fight(participants[idx1], participants[idx2]);
             }
-            
+
+            Console.WriteLine("\nThe tournament is over, and the victor is {0}!", participants[0].GetName());
+            return;
         }
         private void Fight(Character fighter1, Character fighter2)
         {
@@ -50,19 +55,21 @@ namespace RPG_system
             
             for (int i = 1; i <= rounds; i++)
             {
-                Console.WriteLine("Round {0}", i);
+                Console.WriteLine("\nRound {0}", i);
                 damage = attacker.OnAttack() - defender.OnDefense();
                 if (damage < 0)
                 {
                     damage = 0;
                 }
                 defender.HP -= (int)Math.Round(damage);
+                Console.WriteLine(defender.ToString());
+
                 if (defender.HP == 0)                           // If a character dies it breaks the loop
                 {
-                    Console.WriteLine("{0} died after their fight with {1}", defender.GetName(), attacker.GetName());
+                    Console.WriteLine("\n{0} died after their fight with {1}.", defender.GetName(), attacker.GetName());
                     participants.Remove(defender);
 
-                    Console.WriteLine(attacker.victoryMessage());
+                    Console.WriteLine("\n{0}", attacker.victoryMessage());
                     attacker.XP += 0.5;
                     attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP)*0.5);     // HP-restoration by 50% for the winner
                     return;
@@ -72,11 +79,9 @@ namespace RPG_system
                     (attacker, defender) = (defender, attacker);    // Swapping attacker/defender
                     (attackerInitHP, defenderInitHP) = (defenderInitHP, attackerInitHP);
                 }
-
-                
             }
             
-            Console.WriteLine("The fight between {0} and {1} resulted in a draw", attacker.GetName(), defender.GetName());
+            Console.WriteLine("\nThe fight between {0} and {1} resulted in a draw.", attacker.GetName(), defender.GetName());
             attacker.XP += 0.25;    // Smaller XP increase for both characters
             defender.XP += 0.25;
             attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * 0.5);   // HP restoration for both characters by 50%

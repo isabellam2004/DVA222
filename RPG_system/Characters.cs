@@ -27,7 +27,7 @@
 
         public double OnAttack()   // could prob simplify
         {
-            Console.WriteLine(category.GetAtkMessage());
+            Console.WriteLine("{0} {1}", name, category.GetAtkMessage());
             double attack = category.AttackFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
 
             return attack*Random.Shared.NextDouble()*(xp - 0);
@@ -35,7 +35,7 @@
 
         public double OnDefense()
         {
-            Console.WriteLine(category.GetDefMessage());
+            Console.WriteLine("{0} {1}", name, category.GetDefMessage());
             double defense = category.DefenceFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
 
             return defense * Random.Shared.NextDouble() * (xp - 0);
