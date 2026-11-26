@@ -1,38 +1,41 @@
-﻿using RPG_system;
-using System.Xml.Linq;
-
-namespace Characters
+﻿namespace RPG_system
 {
-    public class Character
+    class Character
     {
-        string Name;
+        string name;
         Category category;
         Race race;
+        int[] attributes;
         double HP;
         double XP;
+
         public Character(string name, Race race, Category category)
         {
-            this Name = name;
-            this.race = race;
+            this.name = name;
             this.category = category;
-            this.HP = race.maxHP;
-            this.XP = category.initXP;
+            this.race = race;
+            attributes = race.GetAttributes();
+            HP = race.GetMaxHP();
+            XP = category.GetInitXP();
         }
-        double OnAttack()   // could prob simplify
+
+        public double OnAttack()   // could prob simplify
         {
-            double attack = category.AttackFormula(race.strength, race.agility, race.intelligence);
+            double attack = category.AttackFormula(attributes[0], attributes[1], attributes[2]);
 
             return attack*Random.Shared.NextDouble()*(XP - 0);
         }
-        double OnDefense()
+
+        public double OnDefense()
         {
-            double defense = category.DefenceFormula(race.strength, race.agility, race.intelligence);
+            double defense = category.DefenceFormula(attributes[0], attributes[1], attributes[2]);
 
             return defense * Random.Shared.NextDouble() * (XP - 0);
         }
-        string ToString()
+
+        public string ToString()
         {
-            return $"Name: {name}, XP: {XP}, Health: {health}";
+            return $"Name: {name}, XP: {XP}, Health: {HP}";
         }
     }
 
