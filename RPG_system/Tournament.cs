@@ -9,40 +9,43 @@ namespace RPG_system
     class Tournament
     {
         int rounds;
-        Character[] participants;
-        string? tournamentWinner;
-        string? fightWinner;
+        List<Character> participants;
 
-        public Tournament(int rounds, Character[] participants)     // Send amount of rounds each fight will be and the participants
+        public Tournament(int rounds, List<Character> participants)     // Send amount of rounds each fight will be and the participants
         {
             this.rounds = rounds;
             this.participants = participants;
-            this.tournamentWinner = null;
         }
-        public string? startTournament()
+        public void startTournament()
         {
-            while(tournamentWinner == null) 
+            while(participants.Count() > 1) 
             { 
                 // Select two alive characters, let them fight until only one remains alive, repeats until only one alive character left
-                
+                // Print out victor before returning?
             }
-            return tournamentWinner;
+            
         }
-        private string? Fight(Character fighter1, Character fighter2)
+        private void Fight(Character fighter1, Character fighter2)
         {
-            Character? attacker;
-            Character? defender;
+            Character attacker;
+            Character defender;
             double damage;
+            int attackerInitHP;     // Saving initial HP so for HP restoration
+            int defenderInitHP;
 
-            if(Random.Shared.Next(0,1) == 0)    // Selects which fighter gets to start attacking/defending before alternating between rounds.
+            if(Random.Shared.Next(0,2) == 0)    // Selects which fighter gets to start attacking/defending before alternating between rounds.
             {
                 attacker = fighter1;
                 defender = fighter2;
+                attackerInitHP = fighter1.HP;
+                defenderInitHP = fighter2.HP;
             }
             else
             {
                 attacker = fighter2;
                 defender = fighter1;
+                attackerInitHP = fighter2.HP;
+                defenderInitHP = fighter1.HP;
             }
             
             for (int i = 1; i <= rounds; i++)
@@ -54,14 +57,31 @@ namespace RPG_system
                     damage = 0;
                 }
                 defender.HP -= (int)Math.Round(damage);
-                (attacker, defender) = (defender, attacker);    // Swapping attacker/defender
+                if (defender.HP == 0)                           // If a character dies it breaks the loop
+                {
+                    Console.WriteLine("{0} died after their fight with {1}", defender.GetName(), attacker.GetName());
+                    participants.Remove(defender);
 
-                if (defender.HP == 0)
-                    fightWinner = attacker;
+                    Console.WriteLine(attacker.victoryMessage());
+                    attacker.XP += 0.5;
+                    attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP)*0.5);     // HP-restoration by 50% for the winner
+                    return;
+                }
+                else
+                {
+                    (attacker, defender) = (defender, attacker);    // Swapping attacker/defender
+                    (attackerInitHP, defenderInitHP) = (defenderInitHP, attackerInitHP);
+                }
+
+                
             }
-
             
-            return fightWinner;
+            Console.WriteLine("The fight between {0} and {1} resulted in a draw", attacker.GetName(), defender.GetName());
+            attacker.XP += 0.25;    // Smaller XP increase for both characters
+            defender.XP += 0.25;
+            attacker.HP += (int)Math.Round((attackerInitHP - attacker.HP) * 0.5);   // HP restoration for both characters by 50%
+            defender.HP += (int)Math.Round((defenderInitHP - defender.HP) * 0.5);
+            return;
         }
 
     }

@@ -8,7 +8,7 @@
         int hp;
         double xp;
         int maxHP;
-        double maxXP;
+        double initXP;
 
         public Character(string name, Race race, Category category)
         {
@@ -16,9 +16,9 @@
             this.category = category;
             this.race = race;
             maxHP = GetMaxHP();
-            maxXP = GetInitXP();
+            initXP = GetInitXP();
             HP = maxHP;
-            XP = maxXP;
+            XP = initXP;
         }
 
         public int GetAttribute(int attribute) => race.GetAttributes()[attribute];
@@ -45,6 +45,14 @@
         {
             return $"Name: {name}, XP: {XP}, Health: {HP}";
         }
+        public string GetName()
+        {
+            return name;
+        }
+        public string victoryMessage()
+        {
+            return race.getVictoryMessage();
+        }
         public int HP
         {
             get 
@@ -64,7 +72,7 @@
             }
             set 
             {
-                xp=Math.Clamp(value, 0,maxXP);
+                xp=Math.Clamp(value, initXP, 10);    // XP level cannot be higher than 10
             }
         }
     }

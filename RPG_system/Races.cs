@@ -79,7 +79,7 @@ namespace RPG_system
     }
     class Human : Race
     {
-        string[] victoryMSGs = ["The human celebrates his victory with some cake.", "The human cannot take credit for his victory because of cultural norms."];
+        string[] victoryMSGs = ["The human celebrates his victory with some cake.", "The human won but cannot take credit for the victory because of cultural norms."];
 
         public Human() : base(6, 5, 5, 35) { }
         public override string getVictoryMessage()
