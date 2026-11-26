@@ -43,7 +43,7 @@
             Console.WriteLine("{0} {1}", name, category.GetDefMessage());
             double defense = category.DefenceFormula(GetAttribute(0), GetAttribute(1), GetAttribute(2));
 
-            return defense * Random.Shared.NextDouble() * (xp - 0);
+            return defense * Random.Shared.NextDouble() * (xp);
         }
 
         // Returns a string with character info
@@ -78,7 +78,7 @@
             }
             set 
             {
-                xp=Math.Clamp(value, initXP, 10);    // XP level cannot be higher than 10
+                xp=Math.Clamp(value, 0, 10);    // XP level cannot be higher than 10
             }
         }
     }
