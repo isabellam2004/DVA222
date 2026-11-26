@@ -13,6 +13,18 @@
             Console.WriteLine(c2.ToString());
             Console.WriteLine(c3.ToString());
             Console.WriteLine(c4.ToString());
+
+            Console.WriteLine("Gunilla takes psychological damage from being a wretch");
+            c4.HP = c4.HP - 1;
+            Console.WriteLine(c4.ToString());
+
+            Console.WriteLine("Gunilla takes a substantital amount of psychological damage from being a wretch and dies.");
+            c4.HP = c4.HP - 100;
+            Console.WriteLine(c4.ToString());
+
+            Console.WriteLine("Berit takes pity on Gunilla and revives her.");
+            c4.HP = c4.HP + 100;
+            Console.WriteLine(c4.ToString());   
         }
     }
 }
