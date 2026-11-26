@@ -9,6 +9,11 @@
             this.initXP = initXP;
         }
 
+        public double GetInitXP()
+        {
+            return initXP;
+        }
+
         public virtual double AttackFormula(int s, int a, int i) => throw new NotImplementedException();
 
         public virtual double DefenceFormula(int s, int a, int i) => throw new NotImplementedException();

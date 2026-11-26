@@ -19,7 +19,12 @@ namespace RPG_system
 
         public int[] GetAttributes()
         {
-            return [strength, agility, intelligence, maxHP];
+            return [strength, agility, intelligence];
+        }
+
+        public int GetMaxHP()
+        {
+            return maxHP;
         }
 
         public virtual string getVictoryMessage() => throw new NotImplementedException();
