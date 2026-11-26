@@ -56,7 +56,7 @@
             for (int i = 1; i <= rounds; i++)
             {
                 Console.WriteLine("\nRound {0}", i);
-                damage = attacker.OnAttack() - defender.OnDefense();
+                damage = attacker.OnAttack() - defender.OnDefence();
                 if (damage < 0)
                 {
                     damage = 0;
